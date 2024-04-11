@@ -1,5 +1,5 @@
 ﻿
-// track
+// nocopy
 using ConsoleApp38;
 
 Console.WriteLine("Матричный калькулятор");
