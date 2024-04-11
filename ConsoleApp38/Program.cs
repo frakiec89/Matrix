@@ -14,6 +14,7 @@ void PrintCommand()
     Console.WriteLine("Сложить две матрицы: \"addition matrix\"");
     Console.WriteLine("Вычесть из матрицы матрицу: \"subtract matrix\"");
     Console.WriteLine("Умножить две матрицы: \"multi double matrix\"");
+    Console.WriteLine("транспонировать матрицу: \"T matrix\"");
 
 }
 
@@ -30,6 +31,7 @@ while (true)
             case "addition matrix": ConsoleAdditionMatrix(); break;
             case "subtract matrix": ConsoleSubtractMatrix(); break;
             case "multi double matrix": ConsoleMultiDoubleMatrix(); break;
+            case "T matrix": ConsoleTransposeMatrix(); break;
 
             default:
                 Console.WriteLine("Не верная команда");
@@ -40,6 +42,20 @@ while (true)
     {
         Console.WriteLine(ex.Message);
     }
+}
+
+void ConsoleTransposeMatrix()
+{
+    Console.WriteLine("Транспонировать матрцу");
+    Console.WriteLine("Генерация матрицы");
+    int[] size1 = GetMatrixDimensions();
+
+    var m1 = MatrixService.SetMatrix(size1[0], size1[1]);
+
+    var tMatrix = MatrixService.TransposeMatrix(m1);
+    Console.WriteLine("Транспонированная матрица");
+    MatrixService.PrintMatrix(tMatrix);
+
 }
 
 void ConsoleMultiDoubleMatrix()
