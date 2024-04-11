@@ -65,5 +65,49 @@ namespace ConsoleApp38
             }
         }
 
+
+
+        /// <summary>
+        /// Вывод матрицы на экран 
+        /// </summary>
+        /// <param name="matrix"></param>
+        public static double[,] SetMatrix(int row, int colum)
+        {
+            double[,] resMatrix = new double[row, colum];
+
+            Console.WriteLine("Создание  новой матрицы");
+
+            for (int i = 0; i < resMatrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < resMatrix.GetLength(1); j++)
+                {
+                    resMatrix[i, j] = GetDouble($"Введите  элемент  матрицы с  индексем [{i + 1},{j + 1}]");
+                }
+            }
+
+            Console.WriteLine("Итоговая матрица:");
+            PrintMatrix(resMatrix);
+            return resMatrix;
+        }
+
+        /// <summary>
+        /// получить  число
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        private static double GetDouble(string message)
+        {
+            Console.WriteLine(message);
+            try
+            {
+                return Convert.ToDouble(Console.ReadLine());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message + " Попробуйте еще раз");
+                return GetDouble(message);
+            }
+        }
+
     }
 }
