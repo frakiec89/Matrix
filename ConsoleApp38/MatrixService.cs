@@ -1,4 +1,4 @@
-﻿// nocopy
+﻿// track
 
 namespace ConsoleApp38
 {
@@ -45,8 +45,6 @@ namespace ConsoleApp38
             }
             return massiv;
         }
-
-     
 
 
         /// <summary>

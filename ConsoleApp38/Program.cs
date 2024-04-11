@@ -10,6 +10,7 @@ void PrintCommand()
 {
     Console.WriteLine("Доступные команды:");
     Console.WriteLine("получить случайную матрицу: \"random\"");
+    Console.WriteLine("Умножить матрицу на число: \"multi number\"");
 }
 
 while (true)
@@ -20,7 +21,7 @@ while (true)
     {
         switch (Console.ReadLine())
         {
-            case "random": ConsoleRandomMatrix(); break;
+            case "random": ConsoleRandomMatrix(); break; 
             case "multi number": ConsoleMultiNumber(); break;
 
             default:
