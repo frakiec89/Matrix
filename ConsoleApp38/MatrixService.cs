@@ -145,11 +145,30 @@ namespace ConsoleApp38
         /// <param name="matrix"></param>
         public static void PrintMatrix(double[,] matrix)
         {
+
+          
+
+
             for (int i = 0; i < matrix.GetLength(0); i++)
             {
+                if (i == 0)
+                {
+                    for (int k = 0; k <= matrix.GetLength(1); k++)
+                    {
+                        Console.Write($"_____");
+                    }
+                    Console.WriteLine();
+                }
+
+
                 for (int j = 0; j < matrix.GetLength(1); j++)
                 {
-                    Console.Write(matrix[i, j] + "\t");
+                    if(j == 0 )
+                        Console.Write($"|");
+
+                 
+
+                    Console.Write( $"{matrix[i, j],5} " );
                 }
                 Console.WriteLine();
             }
@@ -170,7 +189,7 @@ namespace ConsoleApp38
             {
                 for (int j = 0; j < resMatrix.GetLength(1); j++)
                 {
-                    resMatrix[i, j] =  GetDouble($"Введите  элемент  матрицы с  индексем [{i + 1},{j + 1}]");
+                    resMatrix[i, j] =  GetDouble($"Введите  элемент  матрицы с  индексем [{i + 1 },{j + 1 }]");
                 }
             }
 

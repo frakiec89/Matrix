@@ -9,7 +9,6 @@ PrintCommand();
 void PrintCommand()
 {
     Console.WriteLine("Доступные команды:");
-    Console.WriteLine("получить случайную матрицу: \"random\"");
     Console.WriteLine("Умножить матрицу на число: \"multi number\"");
     Console.WriteLine("Сложить две матрицы: \"addition matrix\"");
     Console.WriteLine("Вычесть из матрицы матрицу: \"subtract matrix\"");
@@ -26,7 +25,6 @@ while (true)
     {
         switch (Console.ReadLine())
         {
-            case "random": ConsoleRandomMatrix(); break;
             case "multi number": ConsoleMultiNumber(); break;
             case "addition matrix": ConsoleAdditionMatrix(); break;
             case "subtract matrix": ConsoleSubtractMatrix(); break;
@@ -43,14 +41,12 @@ while (true)
         Console.WriteLine(ex.Message);
     }
 }
-
+/// транспонирование матрицы
 void ConsoleTransposeMatrix()
 {
     Console.WriteLine("Транспонировать матрцу");
-    Console.WriteLine("Генерация матрицы");
-    int[] size1 = GetMatrixDimensions();
+    var m1 = GenericMatrix("Генерация матрицы");
 
-    var m1 = MatrixService.SetMatrix(size1[0], size1[1]);
 
     var tMatrix = MatrixService.TransposeMatrix(m1);
     Console.WriteLine("Транспонированная матрица");
@@ -58,18 +54,14 @@ void ConsoleTransposeMatrix()
 
 }
 
+/// умножение матриц
 void ConsoleMultiDoubleMatrix()
 {
     Console.WriteLine("Умножение двух матриц");
-    Console.WriteLine("Генерация первой матрицы");
-    int[] size1 = GetMatrixDimensions();
 
-    var m1 = MatrixService.SetMatrix(size1[0], size1[1]);
+    var m1 = GenericMatrix("Генерация первой матрицы");
 
-    Console.WriteLine("Генерация второй матрицы");
-    int[] size2 = GetMatrixDimensions();
-
-    var m2 = MatrixService.SetMatrix(size2[0], size2[1]);
+    var m2 = GenericMatrix("Генерация второй матрицы");
 
     var resault = MatrixService.MatrixMultiplication(m1, m2);
 
@@ -77,18 +69,14 @@ void ConsoleMultiDoubleMatrix()
     MatrixService.PrintMatrix(resault);
 }
 
+/// вычитание матриц
 void ConsoleSubtractMatrix()
 {
     Console.WriteLine("Вычитание двух матриц");
     Console.WriteLine("Генерация первой матрицы");
-    int[] size1 = GetMatrixDimensions();
-
-    var m1 = MatrixService.SetMatrix(size1[0], size1[1]);
-
-    Console.WriteLine("Генерация второй матрицы");
-    int[] size2 = GetMatrixDimensions();
-
-    var m2 = MatrixService.SetMatrix(size2[0], size2[1]);
+    
+    var m1 = GenericMatrix("Генерация первой матрицы");
+    var m2 = GenericMatrix("Генерация второй матрицы");
 
     var resault = MatrixService.MatrixSubtraction(m1, m2);
 
@@ -96,18 +84,12 @@ void ConsoleSubtractMatrix()
     MatrixService.PrintMatrix(resault);
 }
 
+/// сложение  матриц 
 void ConsoleAdditionMatrix()
 {
     Console.WriteLine("Сложение двух матриц");
-    Console.WriteLine("Генерация первой матрицы");
-    int[] size1 = GetMatrixDimensions();
-
-    var m1 = MatrixService.SetMatrix(size1[0], size1[1]);
-
-    Console.WriteLine("Генерация второй матрицы");
-    int[] size2 = GetMatrixDimensions();
-
-    var m2 = MatrixService.SetMatrix(size2[0], size2[1]);
+    var m1 = GenericMatrix("Генерация первой матрицы");
+    var m2 = GenericMatrix("Генерация второй матрицы");
 
     var resault = MatrixService.MatrixAddition(m1, m2);
 
@@ -116,28 +98,40 @@ void ConsoleAdditionMatrix()
     
 }
 
+///умножение  матрицы на  число
 void ConsoleMultiNumber()
 {
     Console.WriteLine("Умножение матрицы на  число");
-    Console.WriteLine("Ввод  матрицы:");
-    int[] size = GetMatrixDimensions();
-    var matrix = MatrixService.SetMatrix(size[0], size[1]);
+    var m1 = GenericMatrix("Генерация  матрицы");
+
     double x = GetDouble("Введите число на  которое  надо  умнодить  матрицу");
-    var reseult = MatrixService.MatrixMultiplyingByNumber(matrix, x);
+    var reseult = MatrixService.MatrixMultiplyingByNumber(m1, x);
     Console.WriteLine("Ответ");
     MatrixService.PrintMatrix(reseult);
 }
 
-void ConsoleRandomMatrix()
-{
-    Console.WriteLine("Генерация случайной  матрицы:");
-    int [] size =  GetMatrixDimensions();
 
-    var randomMatrix =   MatrixService.RandomMatrix(size[0], size[1]);
-    Console.WriteLine("Случайная матрица");
-    MatrixService.PrintMatrix(randomMatrix);
+
+/// генерация матрицы - случайной  или  ручной  ввод
+static double [,] GenericMatrix(string message)
+{
+    Console.WriteLine(message);
+    int[] size = GetMatrixDimensions();
+    Console.WriteLine("Введете \"r\" если хотите случайную  матрицу");
+    Console.WriteLine("Введете \"m\" если хотите ввести матрицу вручеую");
+    switch (Console.ReadLine())
+    {
+        case "r":  var r = MatrixService.RandomMatrix(size[0], size[1]);
+            Console.WriteLine("исходная случайная матрица");
+            MatrixService.PrintMatrix (r);
+            return r;   
+        case "m": return MatrixService.SetMatrix(size[0] , size[1]); 
+        default: Console.WriteLine("команда не распозднана, попробуйте еще раз");
+            return GenericMatrix(message);
+    }
 }
 
+///  получение  размеров матрицы
 static int  []  GetMatrixDimensions()
 {
     int[] size = new int[2];
@@ -147,8 +141,8 @@ static int  []  GetMatrixDimensions()
 }
 
 
-
- static int GetInt(string message)
+///получение  числа int
+static int GetInt(string message)
 {
     Console.WriteLine(message);
     try
@@ -162,6 +156,7 @@ static int  []  GetMatrixDimensions()
     }
 }
 
+/// получиение числа double
 static double GetDouble(string message)
 {
     Console.WriteLine(message);
