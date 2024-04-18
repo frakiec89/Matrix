@@ -2,7 +2,7 @@
 
 namespace ConsoleApp38
 {
-    internal class MatrixService
+    internal partial class MatrixService
     {
 
         /// <summary>
@@ -46,7 +46,9 @@ namespace ConsoleApp38
             return massiv;
         }
 
-     
+      
+
+
         /// <summary>
         /// Умножение  матриц
         /// </summary>

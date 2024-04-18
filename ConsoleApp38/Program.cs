@@ -14,6 +14,7 @@ void PrintCommand()
     Console.WriteLine("Вычесть из матрицы матрицу: \"subtract matrix\"");
     Console.WriteLine("Умножить две матрицы: \"multi double matrix\"");
     Console.WriteLine("транспонировать матрицу: \"T matrix\"");
+    Console.WriteLine("найти определитель  матрицы: \"determinant\"");
 
 }
 
@@ -30,7 +31,7 @@ while (true)
             case "subtract matrix": ConsoleSubtractMatrix(); break;
             case "multi double matrix": ConsoleMultiDoubleMatrix(); break;
             case "T matrix": ConsoleTransposeMatrix(); break;
-
+            case "determinant": ConsoleDeterminant(); break;
             default:
                 Console.WriteLine("Не верная команда");
                 break;
@@ -41,6 +42,18 @@ while (true)
         Console.WriteLine(ex.Message);
     }
 }
+
+void ConsoleDeterminant()
+{
+    Console.WriteLine("Определитель  матрийы");
+    var m1 = GenericMatrix("Генерация матрицы (матрица должна быть квадратной)");
+
+    Console.WriteLine($"Ответ {MatrixService.DeterminantMatrix(m1)}");
+
+}
+
+
+
 /// транспонирование матрицы
 void ConsoleTransposeMatrix()
 {
