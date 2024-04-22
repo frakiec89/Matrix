@@ -44,7 +44,7 @@ while (true)
 
 void ConsoleDeterminant()
 {
-    Console.WriteLine("Определитель  матрийы");
+    Console.WriteLine("Определитель  матрицы");
     var m1 = GenericMatrix("Генерация матрицы (матрица должна быть квадратной)");
    // var m1 = MatrixService.MatricStatic();
 
