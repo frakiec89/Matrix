@@ -1,4 +1,4 @@
-﻿// nocopy
+﻿// track
 
 namespace ConsoleApp38
 {
@@ -148,9 +148,6 @@ namespace ConsoleApp38
         public static void PrintMatrix(double[,] matrix)
         {
 
-          
-
-
             for (int i = 0; i < matrix.GetLength(0); i++)
             {
                 if (i == 0)
@@ -170,7 +167,7 @@ namespace ConsoleApp38
 
                  
 
-                    Console.Write( $"{matrix[i, j],5} " );
+                    Console.Write( $"{Math.Round(matrix[i, j] , 3),5} " );
                 }
                 Console.WriteLine();
             }
