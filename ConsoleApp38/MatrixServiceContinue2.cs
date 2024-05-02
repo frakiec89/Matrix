@@ -55,9 +55,9 @@ namespace ConsoleApp38
                 }
             }
 
-            var matrixT = TransposeMatrix(_matrivC);
+            var matrixT = TransposeMatrix(_matrivC); // Транспонируем 
 
-            return MatrixMultiplyingByNumber(matrixT, 1.0 / detMatrix);
+            return MatrixMultiplyingByNumber(matrixT, 1.0 / detMatrix); // умножаем  на 1/ det
         }
 
         // приватные методы
