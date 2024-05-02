@@ -1,8 +1,6 @@
 ﻿// track
 using ConsoleApp38;
-
 Console.WriteLine("Матричный калькулятор");
-
 PrintCommand();
 
 void PrintCommand()
@@ -13,10 +11,9 @@ void PrintCommand()
     Console.WriteLine("Вычесть из матрицы матрицу: \"subtract matrix\"");
     Console.WriteLine("Умножить две матрицы: \"multi double matrix\"");
     Console.WriteLine("транспонировать матрицу: \"T matrix\"");
-    Console.WriteLine("найти определитель  матрицы: \"d\"");
+    Console.WriteLine("найти определитель  матрицы: \"det\"");
     Console.WriteLine("найти обратную матрицу: \"rev\""); // новое 
     Console.WriteLine("найти ранг матрицы: \"rang\""); // новое 
-
 }
 
 while (true)
@@ -32,7 +29,7 @@ while (true)
             case "subtract matrix": ConsoleSubtractMatrix(); break;
             case "multi double matrix": ConsoleMultiDoubleMatrix(); break;
             case "T matrix": ConsoleTransposeMatrix(); break;
-            case "d": ConsoleDeterminant(); break;
+            case "det": ConsoleDeterminant(); break;
             case "rev": ConsoleReverseMatrix(); break; // новое
             case "rang": ConsoleRangMatrix(); break; // новое
             default:
@@ -46,11 +43,11 @@ while (true)
     }
 }
 
+// нахождение ранга матрицы
 void ConsoleRangMatrix()
 {
     Console.WriteLine("Найти ранг матрицы");
     var m1 = GenericMatrix("Генерация матрицы");
-
     Console.WriteLine("Ранг матрицы: " + MatrixService.RangMatrix(m1));
 }
 
@@ -59,31 +56,27 @@ void ConsoleRangMatrix()
 void ConsoleReverseMatrix()
 {
     Console.WriteLine("Обратная  матрица");
-    var m1 = MatrixService.MatricStatic(); // статичная матрица
+    var m1 = GenericMatrix("Генерация матрицы (матрица должна быть квадратной)");
 
     var m2 = MatrixService.ReverseMatrix(m1);
 
-     Console.WriteLine($"Обратная матрца");
+     Console.WriteLine($"Обратная матраца");
 
      MatrixService.PrintMatrix(m2);
 }
 
+/// поиск  определителя
 void ConsoleDeterminant()
 {
     Console.WriteLine("Определитель  матрицы");
     var m1 = GenericMatrix("Генерация матрицы (матрица должна быть квадратной)");
-    //var m1 = MatrixService.MatricStatic(); // статичная матрица
-
     Console.WriteLine($"Ответ {MatrixService.DeterminantMatrix(m1)}");
-
 }
-
-
 
 /// транспонирование матрицы
 void ConsoleTransposeMatrix()
 {
-    Console.WriteLine("Транспонировать матрцу");
+    Console.WriteLine("Транспонировать матрицу");
     var m1 = GenericMatrix("Генерация матрицы");
 
 
@@ -149,8 +142,6 @@ void ConsoleMultiNumber()
     MatrixService.PrintMatrix(reseult);
 }
 
-
-
 /// генерация матрицы - случайной  или  ручной  ввод
 static double [,] GenericMatrix(string message)
 {
@@ -179,7 +170,6 @@ static int  []  GetMatrixDimensions()
     return size;
 }
 
-
 ///получение  числа int
 static int GetInt(string message)
 {
@@ -195,7 +185,7 @@ static int GetInt(string message)
     }
 }
 
-/// получиение числа double
+/// получение числа double
 static double GetDouble(string message)
 {
     Console.WriteLine(message);
