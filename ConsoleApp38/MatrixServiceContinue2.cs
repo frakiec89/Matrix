@@ -1,4 +1,4 @@
-﻿// track
+﻿// nocopy
 
 namespace ConsoleApp38
 {
@@ -38,11 +38,15 @@ namespace ConsoleApp38
         /// <returns></returns>
         public static double[,] ReverseMatrix(double[,] matrix)
         {
+            Console.WriteLine("Определитель");
             double detMatrix = DeterminantMatrix(matrix);
             if (detMatrix == 0)
                 throw new Exception("Матрица с нулевым определителем");
 
             double[,] _matrivC = new double[matrix.GetLength(0), matrix.GetLength(1)];
+
+
+            Console.WriteLine("Обратная матрица");
 
             //  получаем каждый элемент  этой  матрицы_matrivC 
             int step = 0;

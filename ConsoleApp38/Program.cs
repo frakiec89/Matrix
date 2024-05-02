@@ -14,6 +14,7 @@ void PrintCommand()
     Console.WriteLine("найти определитель  матрицы: \"det\"");
     Console.WriteLine("найти обратную матрицу: \"rev\""); // новое 
     Console.WriteLine("найти ранг матрицы: \"rang\""); // новое 
+    Console.WriteLine("очистить консоль \"clear\""); // новое 
 }
 
 while (true)
@@ -32,6 +33,7 @@ while (true)
             case "det": ConsoleDeterminant(); break;
             case "rev": ConsoleReverseMatrix(); break; // новое
             case "rang": ConsoleRangMatrix(); break; // новое
+            case "clear": Console.Clear(); PrintCommand(); break; // новое
             default:
                 Console.WriteLine("Не верная команда");
                 break;
