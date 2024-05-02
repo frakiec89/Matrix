@@ -13,10 +13,9 @@ namespace ConsoleApp38
         {
             var  r = new double[,]
             {
-                { 2   ,  0    , 3    , 2},
-                { 4    , 0   ,  4  ,   4 },
-                { 2   ,  1    , 3   ,  4},
-                {  3  ,   3   ,  1 ,    3}
+                { 2   ,  0  , 3   },
+                { 4   , 0   ,  4  },
+                {  3  ,  3  ,  1 }
             };
 
             PrintMatrix(r);
@@ -58,7 +57,7 @@ namespace ConsoleApp38
         }
 
         // j
-        // i // 1 2 3 8
+   // i // 1 2 3 8
         // 4 5 6 8
         // 7 8 9 8 
         // 1 1 1 1
@@ -72,6 +71,20 @@ namespace ConsoleApp38
         private static double GausMetod(double[,] matrixGaus)
         {
 
+            double[,] triangularMatrix = TriangularMatrix(matrixGaus);
+
+            double res = 1; // переменная  для побсчета  главной диагонали 
+            for (int i = 0; i < triangularMatrix.GetLength(1); i++)
+            {
+                res *= triangularMatrix[i, i]; // перебираем  главную диагональ
+            }
+
+            return Math.Round ( res , 3); // возращаем отределитель
+        }
+
+
+        public static double[,] TriangularMatrix (double[,] matrixGaus)
+        {
             for (int i = 0; i < matrixGaus.GetLength(0); i++) // перебор  столбоцов 
             {
                 double[] row = GetRow(matrixGaus, i); //  получаем   первую  строку 
@@ -81,8 +94,8 @@ namespace ConsoleApp38
                     СhangeRow(matrixGaus, row, i); // если да  - меняем  строку  на  подходящию нижнию  умноженную  на  минус 1
                     row = GetRow(matrixGaus, i); // получаем актуальную строку 
                 }
-                    
-                for (int j = i + 1; j < matrixGaus.GetLength(0) ; j++) // перебираем  строки  
+
+                for (int j = i + 1; j < matrixGaus.GetLength(0); j++) // перебираем  строки  
                 {
                     if (j == 0 && i == 0) // если первая  строка  в матрице  - не  трогаем её
                         continue;
@@ -100,15 +113,9 @@ namespace ConsoleApp38
                     PrintMatrix(matrixGaus); // выводим на  экран  для наглядности
                 }
             }
-
-            double res = 1; // переменная  для побсчета  главной диагонали 
-            for (int i = 0; i < matrixGaus.GetLength(1); i++)
-            {
-                res *= matrixGaus[i, i]; // перебираем  главную диагональ
-            }
-
-            return Math.Round ( res , 3); // возращаем отределитель
+            return matrixGaus;
         }
+
 
 
         /// <summary>
@@ -152,6 +159,7 @@ namespace ConsoleApp38
 
             Array.Copy(row, r1, row.Length);  // скопирую  что  пришло   - иначе матрица  измениться  а  я  так не  хочуу 
             Array.Copy(row2, r2, row2.Length); // скопирую  что  пришло   - иначе матрица  измениться  а  я  так не  хочуу 
+            
             double x1 = row[coIndex]; // возьмем  число  их первой  строки
             double x2 = row2[coIndex]; // возьмем  число  их второй строки -- тут  хочу получить нуль
 
